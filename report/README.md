@@ -1,1 +1,0 @@
-# uio-assignment-latex-template
