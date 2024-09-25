@@ -6,3 +6,4 @@ jupyter
 pillow
 seaborn
 humanfriendly
+random 
