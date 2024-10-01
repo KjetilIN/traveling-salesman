@@ -57,6 +57,7 @@
     \begin{figure}[h!]
         \includegraphics[width=7cm]{images/exhaustive_search_result_10_cities.png}
         \centering
+        \caption{Exhaustive Search 10 cities plotted route}
     \end{figure}
 
     \newpage
@@ -119,12 +120,100 @@
 
     \section{Hill Climbing}
 
+    Hill Climbing is an algorithm that combines randomness and greedy search into a single algorithm.
+    This is how my implementation works:
+    \begin{itemize}
+        \item Create a random initial route (valid route only)
+        \item Store the best route in a variable. For each of the 20 runs: 
+        \begin{itemize}
+            \item Create a neighbor solution by swapping two random cities. The cities swapped are not the start city. 
+            \item Evaluate this neighbor solution, and set it as the best route, if the distance is smaller
+        \end{itemize}
+    \end{itemize}
+
+
+    There is a lot of different ways to create a random neighbor solution. By experimenting, it turns out that swapping to cities on the current best solution is a good idea. 
+    It converges towards a better solution. It is still important to run it 20 times, because it has a random element to it. 
 
     \subsection{Performance compared to Exhaustive Search (10 cities)}
 
-    
+    Hill climbing compared to Exhaustive Search, does not look at every solution. This means both that it is less likely to find the best solution.
+    With 10 cities are the total search space much smaller. It took $\sim1.6$ seconds to find the best distance 7486.309 km. Even though we found the same solution as Exhaustive Search, there is a difference in time spent.
+    Exhaustive Search used  $\sim13.48$ seconds (compared to the   $\sim1.6$ seconds).
+
+    The only flaw with the Hill Climbing algorithm, is that we need to run it multiple times to get a deterministic result. This is because the Hill Climbing algorithm has a random element to it. 
+    20 runs seems to be enough to get the same best route as exhaustive search 
+
 
     \subsection{Result for 10 and 24 cities (20 runs each)}
+
+    The following is a table showing the result for both runs:
+
+    \begin{table}[ht]
+        \centering
+        \resizebox{\textwidth}{!}{
+            \begin{tabular}{|c|c|c|c|c|c|}
+                \hline
+                \textbf{Number of Cities} & \textbf{Best Distance} & \textbf{Average Distance} & \textbf{Worst Distance} & \textbf{Std. Deviation} & \textbf{Time Taken (s)} \\ \hline
+                \textbf{10 Cities}        & 7486.31     & 7825.79     & 8421.35     & 405.37            & $\sim1.6$             \\ \hline
+                \textbf{24 Cities}        & 13347.75    & 15083.53    & 17177.85    & 1079.74           & $\sim2.2$             \\ \hline
+            \end{tabular}
+        }
+        \caption{Hill Climbing results for 10 and 24 cities (20 runs each)}
+    \end{table}
+    
+
+    Images below are plotted routes of the best routes from a run: 
+
+    \begin{figure}[ht]
+        \includegraphics[width=7cm]{images/hill_climb_10_cities.png}
+        \centering
+        \caption{Hill climb 10 cities plotted route}
+    \end{figure}
+
+
+    \begin{figure}[ht]
+        \includegraphics[width=7cm]{images/hill_climb_24_cities.png}
+        \centering
+        \caption{Hill climb 24 cities plotted route}
+    \end{figure}
+
+
+
+
+    \section{Genetic algorithm}
+
+    Genetic algorithm is very inspired by evolutions, and is very useful for both search problems where a combination of exploration and exploitation is useful.
+    There is many different tricks and variations when it comes to the algorithm. Based on the problem, the developer can implement domain specific elements to the algorithm. For example, picking a specific mutation method based on the understanding of the problem. \\
+    
+    Genetic algorithm is flexible, but still follows the general scheme. For each part of the scheme, I will explain what I did, some experimenting I did and reason on why I choose the given method for the traveling salesman problem.
+
+    \begin{figure}[ht]
+        \includegraphics[width=7cm]{images/ga_scheme.png}
+        \centering
+        \caption{GA scheme for reference}
+    \end{figure}
+
+
+    \subsection{Create initial population}
+
+    \subsection{Parent Selection}
+
+    \subsection{Crossover}
+
+    \subsection{Mutation}
+
+    \subsection{Survivor Selection}
+
+    \subsection{Termination}
+
+    \subsection{Results: 10 cities}
+
+    \subsection{Results: 24 cities}
+
+    \subsection{GA compared to Exhaustive Search}
+
+
 
 
 \end{document}
