@@ -6,11 +6,19 @@ Traveling salesman problem solved. Mandatory assignment for the master course, I
 
 ## Results for 6 Cities
 
-| Algorithm           | Best Route Distance | Time Taken (s) |
+| Algorithm           | Best Route Distance | Time Taken |
 |---------------------|---------------------|----------------|
-| Exhaustive Search    | [Distance]          | [Time]         |
-| Hill Climbing        | [Distance]          | [Time]         |
-| Genetic Algorithm    | [Distance]          | [Time]         |
+| Exhaustive Search    | 5018.809          | 0.003         |
+| Hill Climbing        | 7486.31          | 1s       |
+
+
+## Results for 10 Cities
+
+| Algorithm           | Best Route Distance | Time Taken |
+|---------------------|---------------------|----------------|
+| Exhaustive Search    | 7486.309            | 13.47s        |
+| Hill Climbing        | 11434.41            |  2.9s        |
+| Genetic Algorithm    | 7486.309         | 1.9        |
 
 
 The following was the **Genetic Algorithm Configuration**: 
@@ -18,29 +26,7 @@ The following was the **Genetic Algorithm Configuration**:
 | Parameter          | Value         |
 |--------------------|---------------|
 | Population Size     | 200           |
-| Generations         | 100           |
-| Mutation Rate       | 0.05 (5%)     |
-| Crossover Rate      | 0.8 (80%)     |
-| Selection Method    | Roulette Selection |
-| Elitism             | Yes (Top 5%)  |
-| Crossover Operator  | Edge Recombination |
-| Mutation Operator   | Swap Mutation |
-
-## Results for 20 Cities
-
-| Algorithm           | Best Route Distance | Time Taken (s) |
-|---------------------|---------------------|----------------|
-| Exhaustive Search    | [Distance]          | [Time]         |
-| Hill Climbing        | [Distance]          | [Time]         |
-| Genetic Algorithm    | [Distance]          | [Time]         |
-
-
-The following was the **Genetic Algorithm Configuration**: 
-
-| Parameter          | Value         |
-|--------------------|---------------|
-| Population Size     | 200           |
-| Generations         | 100           |
+| Generations         | 200           |
 | Mutation Rate       | 0.05 (5%)     |
 | Crossover Rate      | 0.8 (80%)     |
 | Selection Method    | Roulette Selection |
@@ -51,18 +37,18 @@ The following was the **Genetic Algorithm Configuration**:
 
 ## Results for 24 Cities
 
-| Algorithm           | Best Route Distance | Time Taken (s) |
+| Algorithm           | Best Route Distance | Time Taken |
 |---------------------|---------------------|----------------|
-| Exhaustive Search    | [Distance]          | [Time]         |
-| Hill Climbing        | [Distance]          | [Time]         |
-| Genetic Algorithm    | [Distance]          | [Time]         |
+| Exhaustive Search    | NaN          | Inf      |
+| Hill Climbing        | 13563.21     |      3.6s   |
+| Genetic Algorithm    | 12633.75          |  2m, 10s         |
 
 The following was the **Genetic Algorithm Configuration**: 
 
 | Parameter          | Value         |
 |--------------------|---------------|
-| Population Size     | 200           |
-| Generations         | 100           |
+| Population Size     | 500           |
+| Generations         | 3000          |
 | Mutation Rate       | 0.05 (5%)     |
 | Crossover Rate      | 0.8 (80%)     |
 | Selection Method    | Roulette Selection |
