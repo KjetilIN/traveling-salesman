@@ -232,8 +232,22 @@
     \subsection{Survivor Selection}
 
     When selecting surviving routes, we want to keep the best solutions. To make this happen, I implement elitism. 
-    After offspring and population is combined, then we take the top 10\% of the most fit solutions. 
-    Then we fill the rest of the slots by shuffling the remaining solutions and pick then until we have a population with the desired size.
+    After offspring and population is combined, then we take the top 10\% of the most fit solutions. \\
+    
+    
+    The original idea was fill the rest of the slots by shuffling the remaining solutions and pick then until we have a population with the desired size.
+    This turned out to convert very fast, and get stuck in local optima. \\
+
+    \begin{figure}[ht!]
+        \includegraphics[width=12cm]{images/with_bad_inital_population.png}
+        \centering
+        \caption{Screenshot from development where GA for 24 cities are converging too fast}
+    \end{figure}
+
+
+    I changed the way to select the rest of the remaining population, by again using roulette selection by fitness sharing. The fitness sharing happens with the remaining population. 
+    This techniques ensures that there is more likely to pick better solutions but also keep the distribution between the bad and worst solution. 
+    When the fitness for every solution is about the same, then all will solutions will have about the same probability. See results for 24 cities to see the improved convergence.
 
     \subsection{Termination}
 
@@ -287,6 +301,8 @@
         \caption{GA result for 24 cities}
     \end{figure}
 
+    For the fitness graph for 24 cities, it is able to slowly converge towards the best solution, instead of getting stuck at a local optima:
+
     \begin{figure}[ht!]
         \includegraphics[width=12cm]{images/ga_24_cities_avg_graph.png}
         \centering
@@ -301,15 +317,15 @@
     To approximate how many routes the genetic algorithm is through on a single run:
 
     \begin{enumerate}
-        \item The initial population consists of 300 unique solutions.
-        \item We create new offspring which is 40\% of the total population.
+        \item The initial population consists of 500 unique solutions.
+        \item We create new offspring which is 30\% of the total population.
         \item Assuming 80\% of the offspring are new, we can calculate the number of new routes processed.
     \end{enumerate}
 
     Let \(P\) be the total population size, \(O\) be the offspring size.
     Assuming 80\% of the offspring are new, the number of new offspring generated is:
     \[
-    N = 0.8 \times O = 0.8 \times (0.4 \times P) = 96
+    N = 0.8 \times O = 0.8 \times (0.3 \times P) = 120
     \]
 
     The genetic algorithm continues to iterate through generations. Assuming \(G\) is the number of generations run, the total number of routes processed by the genetic algorithm can be approximated as:
@@ -317,20 +333,18 @@
     \text{Total Routes Processed} \approx P_{\text{initial}} + G \times N
     \]
 
-    For 300 start population, 1000 generations and 96 new populations each time: 
+    For 500 start population, 1000 generations and 120 new populations each time: 
     \[
-    \text{Total Routes Processed} \approx 300 + 1000 \times 96 \approx 96300 \text{ routes checked}
+    \text{Total Routes Processed} \approx 500 + 1000 \times 120 \approx 120500 \text{ routes checked}
     \]
 
+    This is much less then all the routes that have to be checked by exhaustive search.
     Even if \textit{all} of the start populations are replaced each time, it would still be significantly less then Exhaustive Search
     \[
-    300 + 1000 \times 300 \ll 24!
+    500 + 1000 \times 500 \ll 24!
     \]
 
-
-    The genetic algorithm checks significantly fewer routes then exhaustive search. Note that this approximation is only an approximation. This might be the wrong way of approximating, but it shows that genetic algorithm is much better than exhaustive search. 
-
-
-
+    The genetic algorithm checks significantly fewer routes then exhaustive search. Note that this approximation is only an approximation. 
+    This might be the wrong way of approximating, but it shows that genetic algorithm is much better than exhaustive search. 
 
 \end{document}
