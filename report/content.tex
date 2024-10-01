@@ -178,9 +178,6 @@
         \caption{Hill climb 24 cities plotted route}
     \end{figure}
 
-
-
-
     \section{Genetic algorithm}
 
     Genetic algorithm is very inspired by evolutions, and is very useful for both search problems where a combination of exploration and exploitation is useful.
@@ -197,17 +194,40 @@
 
     \subsection{Create initial population and population size}
 
-    Notes: 
-    - Tried to create all perm and shuffle => bad
-    - Knew diversity was key
-    - Created a way to create only diverse solutions
+    There are two key points for generating a starting population. First, each route generated has to be a valid route. 
+    Secondly, diversity is key to avoid going into a local optima. Start city is not that important. A route could have the same distance and different start city. 
+    It is the order that will matter the most. 
+
+    \subsection{Fitness}
+
+    Fitness express how well a solution is. For the traveling salesman problem, I chose the inverse of the distance. This means that if the distance is smaller, the better will the fitness be.
+    This fits well with what the goal is: find the route with the minimal distance.
+
     \subsection{Parent Selection}
 
-    Notes:
+    From the population, we select a set of parents that will together create offspring. 
+    For the problem, I chose roulette wheel selection. This method will allow the fittest routes to be more likely to become parents. 
+    This also allows for more exploration, because less fit routes will also be picked. \\ 
+
+    The probability for each item to be picked is the percentage of its own fitness over the sum of fitness for the whole population. This is also known as fitness sharing. 
 
     \subsection{Crossover}
 
+    All of the parents will randomly be selected for creating each offspring. I have chosen that the total amount of offspring should be 30\% of the total population. 
+    This will allow the a lot of new solutions to come in and be part of selections. It is also low enough to allow the new offspring to completely take over the population majority.\\
+
+    After looking over all possible crossover methods, and reading on what options there are. The method I picked in the end was: Edge Recombination Crossover. 
+    This is a method that was shown in a group session by the TAs. It is often used in networking problems. It uses two parents and creates a new offspring with similar paths. 
+    It fits the problem very well: we want to use the offspring to be similar to both parents, while being unique. \\
+
+    It is implemented by creating similarity matrixes, based on what edges each city is connected to. 
+    See the following algorithm for implementation details: \url{https://en.wikipedia.org/wiki/Edge_recombination_operator}
+    
+
     \subsection{Mutation}
+
+    A typical way to include some more exploration for the solution is by mutation. A mutations is a small change. 
+    It was not clear how often 
 
     Notes:
     - Tried 20 percent mutation rate 
@@ -309,6 +329,11 @@
     For 300 start population, 1000 generations and 96 new populations each time: 
     \[
     \text{Total Routes Processed} \approx 300 + 1000 \times 96 \approx 96300 \text{ routes checked}
+    \]
+
+    Even if \textit{all} of the start populations are replaced each time, it would still be significantly less then Exhaustive Search
+    \[
+    300 + 1000 \times 300 \ll 24!
     \]
 
 
