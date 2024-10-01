@@ -36,10 +36,9 @@ The following was the **Genetic Algorithm Configuration**:
 |--------------------|---------------|
 | Population Size     | 200           |
 | Generations         | 200           |
-| Mutation Rate       | 0.05 (5%)     |
-| Crossover Rate      | 0.8 (80%)     |
+| Mutation Rate       | 0.20 (20%)     |
 | Selection Method    | Roulette Selection |
-| Elitism             | Yes (Top 5%)  |
+| Elitism             | Yes (Top 10%)  |
 | Crossover Operator  | Edge Recombination |
 | Mutation Operator   | Swap Mutation |
 
@@ -50,17 +49,16 @@ The following was the **Genetic Algorithm Configuration**:
 |---------------------|---------------------|----------------|
 | Exhaustive Search    | NaN          | Inf      |
 | Hill Climbing        | 13563.21     |      3.6s   |
-| Genetic Algorithm    | 12633.75          |  2m, 10s         |
+| Genetic Algorithm    | 12633.75          |  2m, 10s  (per run)    |
 
 The following was the **Genetic Algorithm Configuration**: 
 
 | Parameter          | Value         |
 |--------------------|---------------|
-| Population Size     | 500           |
-| Generations         | 3000          |
-| Mutation Rate       | 0.05 (5%)     |
-| Crossover Rate      | 0.8 (80%)     |
+| Population Size     | 300           |
+| Generations         | 1000          |
+| Mutation Rate       | 0.20 (20%)     |
 | Selection Method    | Roulette Selection |
-| Elitism             | Yes (Top 5%)  |
+| Elitism             | Yes (Top 10%)  |
 | Crossover Operator  | Edge Recombination |
 | Mutation Operator   | Swap Mutation |

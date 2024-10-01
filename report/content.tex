@@ -139,11 +139,10 @@
 
     Hill climbing compared to Exhaustive Search, does not look at every solution. This means both that it is less likely to find the best solution.
     With 10 cities are the total search space much smaller. It took $\sim1.6$ seconds to find the best distance 7486.309 km. Even though we found the same solution as Exhaustive Search, there is a difference in time spent.
-    Exhaustive Search used  $\sim13.48$ seconds (compared to the   $\sim1.6$ seconds).
+    Exhaustive Search used  $\sim13.48$ seconds (compared to the   $\sim1.6$ seconds). \\
 
     The only flaw with the Hill Climbing algorithm, is that we need to run it multiple times to get a deterministic result. This is because the Hill Climbing algorithm has a random element to it. 
     20 runs seems to be enough to get the same best route as exhaustive search 
-
 
     \subsection{Result for 10 and 24 cities (20 runs each)}
 
@@ -227,26 +226,19 @@
     \subsection{Mutation}
 
     A typical way to include some more exploration for the solution is by mutation. A mutations is a small change. 
-    It was not clear how often 
-
-    Notes:
-    - Tried 20 percent mutation rate 
-    - Tried 25 percent 
-    - Changed so that the best one cannot be mutated, because it seems like it platoed 
+    It was not clear how often it was good to mutate the offspring, but after testing with 10\%, 20\% and 25\% mutation rate, I ended up using 20\%. 
+    The reasoning is that I saw on the fitness graph that it plateaus if the mutation probability was 10\%. It seems to be changing too much when the percentage was 25\%. 
 
     \subsection{Survivor Selection}
 
-    Notes:
-    - did not want to loose the best ones
-    - kept best by implementing elitism
-    - remaining was randomly picked  
+    When selecting surviving routes, we want to keep the best solutions. To make this happen, I implement elitism. 
+    After offspring and population is combined, then we take the top 10\% of the most fit solutions. 
+    Then we fill the rest of the slots by shuffling the remaining solutions and pick then until we have a population with the desired size.
 
     \subsection{Termination}
 
-    Notes: 
-    - tried to make it terminate after getting the same x best solutions in a row
-    - noticed that letting it run over time, lead to the best solutions appearing 
-    - made solution instead run over x generations 
+    This loop will continue forever until it hits some condition to stop. My initial idea was to terminate if the same best route was for x generations in a row.
+    Instead I made the GA run through a given amount of iterations. My solutions converges quite quickly, but will only find the best solution after exploring a lot more after convergence. 
 
     \newpage
 
@@ -254,14 +246,14 @@
 
     For 10 cities GA ran with a population size of 200, and maximum 200 generations.
 
-    We see that the algorithm is able to find the best route. It does so in less than a minute.
-    The fitness graph shows that it rapidly converges within the first.
-
     \begin{figure}[ht!]
-        \includegraphics[width=10cm]{images/ga_10_cities_summary.png}
+        \includegraphics[width=7cm]{images/ga_10_cities_summary.png}
         \centering
         \caption{Summary of 20 runs, 10 cities from Notebook}
     \end{figure}
+
+    We see that the algorithm is able to find the best route. It does so in less than a minute.
+    The fitness graph shows that it rapidly converges within the first 50 generations.
 
     \begin{figure}[ht!]
         \includegraphics[width=10cm]{images/ga_10_cities.png}
@@ -284,7 +276,7 @@
     For 24 cities, the GA was ran with a population size of 300 and maximum 1000 generations.
 
     \begin{figure}[ht!]
-        \includegraphics[width=10cm]{images/ga_24_cities_summary.png}
+        \includegraphics[width=7cm]{images/ga_24_cities_summary.png}
         \centering
         \caption{Summary of 20 runs, 24 cities from Notebook}
     \end{figure}
