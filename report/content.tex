@@ -13,11 +13,11 @@
     
     \section{Usage}
 
-    All code can by run by using the Jupyter notebook called \textit{Assignment1.ipynb} file.
+    All code can by run by using the Jupyter notebook called \textit{Assignment1.ipynb} file. \\
 
-    This project is developed with Python virtual environment. 
+    This project is developed with Python virtual environment.  
     All packages required are in the \textit{requirements.txt}.
-    With VSCode, use the following guide to setup the virtual environment \url{https://code.visualstudio.com/docs/python/environments}.
+    With VSCode, use the following guide to setup the virtual environment \url{https://code.visualstudio.com/docs/python/environments}. \\
 
     After the environment are created, you should have a \textit{.venv} directory in the root folder. 
     Make sure to select the environment when using the notebook. 
@@ -195,23 +195,124 @@
     \end{figure}
 
 
-    \subsection{Create initial population}
+    \subsection{Create initial population and population size}
 
+    Notes: 
+    - Tried to create all perm and shuffle => bad
+    - Knew diversity was key
+    - Created a way to create only diverse solutions
     \subsection{Parent Selection}
+
+    Notes:
 
     \subsection{Crossover}
 
     \subsection{Mutation}
 
+    Notes:
+    - Tried 20 percent mutation rate 
+    - Tried 25 percent 
+    - Changed so that the best one cannot be mutated, because it seems like it platoed 
+
     \subsection{Survivor Selection}
+
+    Notes:
+    - did not want to loose the best ones
+    - kept best by implementing elitism
+    - remaining was randomly picked  
 
     \subsection{Termination}
 
+    Notes: 
+    - tried to make it terminate after getting the same x best solutions in a row
+    - noticed that letting it run over time, lead to the best solutions appearing 
+    - made solution instead run over x generations 
+
+    \newpage
+
     \subsection{Results: 10 cities}
+
+    For 10 cities GA ran with a population size of 200, and maximum 200 generations.
+
+    We see that the algorithm is able to find the best route. It does so in less than a minute.
+    The fitness graph shows that it rapidly converges within the first.
+
+    \begin{figure}[ht!]
+        \includegraphics[width=10cm]{images/ga_10_cities_summary.png}
+        \centering
+        \caption{Summary of 20 runs, 10 cities from Notebook}
+    \end{figure}
+
+    \begin{figure}[ht!]
+        \includegraphics[width=10cm]{images/ga_10_cities.png}
+        \centering
+        \caption{GA result for 10 cities}
+    \end{figure}
+
+    \begin{figure}[ht!]
+        \includegraphics[width=10cm]{images/ga_10_cities_avg_graph.png}
+        \centering
+        \caption{Average Fitness for 10 cities and 20 runs}
+    \end{figure}
+
+
+    \newpage
+
 
     \subsection{Results: 24 cities}
 
-    \subsection{GA compared to Exhaustive Search}
+    For 24 cities, the GA was ran with a population size of 300 and maximum 1000 generations.
+
+    \begin{figure}[ht!]
+        \includegraphics[width=10cm]{images/ga_24_cities_summary.png}
+        \centering
+        \caption{Summary of 20 runs, 24 cities from Notebook}
+    \end{figure}
+
+    \begin{figure}[ht!]
+        \includegraphics[width=10cm]{images/ga_24_cities.png}
+        \centering
+        \caption{GA result for 24 cities}
+    \end{figure}
+
+    \begin{figure}[ht!]
+        \includegraphics[width=10cm]{images/ga_24_cities_avg_graph.png}
+        \centering
+        \caption{Average Fitness for 24 cities and 20 runs}
+    \end{figure}
+
+
+    \newpage
+
+    \subsection{GA compared to Exhaustive Search (24 cities)}
+
+    Exhaustive search will go trough every possible permutation. For 24 cities there are 24! permutations. 
+    To approximate how many routes the genetic algorithm is through on a single run:
+
+    \begin{enumerate}
+        \item The initial population consists of 300 unique solutions.
+        \item We create new offspring which is 40\% of the total population.
+        \item Assuming 80\% of the offspring are new, we can calculate the number of new routes processed.
+    \end{enumerate}
+
+    Let \(P\) be the total population size, \(O\) be the offspring size.
+    Assuming 80\% of the offspring are new, the number of new offspring generated is:
+    \[
+    N = 0.8 \times O = 0.8 \times (0.4 \times P) = 96
+    \]
+
+    The genetic algorithm continues to iterate through generations. Assuming \(G\) is the number of generations run, the total number of routes processed by the genetic algorithm can be approximated as:
+    \[
+    \text{Total Routes Processed} \approx P_{\text{initial}} + G \times N
+    \]
+
+    For 300 start population, 1000 generations and 96 new populations each time: 
+    \[
+    \text{Total Routes Processed} \approx 300 + 1000 \times 96 \approx 96300 \text{ routes checked}
+    \]
+
+
+    The genetic algorithm checks significantly fewer routes then exhaustive search. Note that this approximation is only an approximation. This might be the wrong way of approximating, but it shows that genetic algorithm is much better than exhaustive search. 
 
 
 
