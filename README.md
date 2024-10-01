@@ -49,13 +49,13 @@ The following was the **Genetic Algorithm Configuration**:
 |---------------------|---------------------|----------------|
 | Exhaustive Search    | NaN          | Inf      |
 | Hill Climbing        | 13563.21     |      3.6s   |
-| Genetic Algorithm    | 12633.75          |  2m, 10s  (per run)    |
+| Genetic Algorithm    | 12384.22         |  2m, 10s  (per run)    |
 
 The following was the **Genetic Algorithm Configuration**: 
 
 | Parameter          | Value         |
 |--------------------|---------------|
-| Population Size     | 300           |
+| Population Size     | 500           |
 | Generations         | 1000          |
 | Mutation Rate       | 0.20 (20%)     |
 | Selection Method    | Roulette Selection |
