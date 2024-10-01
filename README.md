@@ -1,7 +1,16 @@
 # Traveling salesman problem 
-Traveling salesman problem solved. Mandatory assignment for the master course, IN4050.
+The Traveling Salesman Problem (TSP) is a classic optimization problem, where the goal is to find the shortest possible route that visits each city exactly once and returns to the starting point. As part of the mandatory assignment for the **IN4050 master’s course**, three different algorithms are implemented and compared: 
+- Exhaustive Search
+- Hill Climbing
+- Genetic Algorithm
 
-![image](./report/images/exhaustive_search_result_10_cities.png)
+The project evaluates these algorithms on datasets of varying sizes (6, 10, and 24 cities) and measures the efficiency and accuracy of each approach in finding the optimal route.
+
+
+<div style="text-align:center">
+
+<img src="./report/images/ga_24_cities.png" alt="GA" width="400"/>
+</div>
 
 
 ## Results for 6 Cities
